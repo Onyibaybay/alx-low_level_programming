@@ -1,4 +1,4 @@
-#include "main.h"
+#include <ctype.h>
 
 /**
  * _isupper - This is a function
@@ -8,7 +8,7 @@
 
 int _isupper(int c)
 {
-	if (_isupper(c))
+	if (isupper(c))
 	{
 		return (1);
 	}
