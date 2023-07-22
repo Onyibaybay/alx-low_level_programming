@@ -1,4 +1,4 @@
-include "main.h"
+#include "main.h"
 
 /**
  * print_square - unction that prints a square
@@ -7,20 +7,21 @@ include "main.h"
  */
 void print_square(int size)
 {
-	int j;
-
-	int i;
-
 	if (size <= 0)
 	{
 		_putchar('\n');
 	}
 	else
-		for (j = 0; j < size; j++)
+	{
+		int i, j;
+
+		for (i = 0; i < size; i++)
 		{
-			for (i = 0; i < size; i++)
+			for (j = 0; j < size; j++)
 			{
-				_putchar(35);
+				_putchar('#');
 			}
+			_putchar('\n');
 		}
+	}
 }
