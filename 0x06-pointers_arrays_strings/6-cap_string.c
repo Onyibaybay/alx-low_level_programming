@@ -1,15 +1,32 @@
 #include "main.h"
+
 /**
- * cap_string - Capitalizes all words of a sgring
- * @str: The string to be capitalized
- * Return: A pointer to the changed string
+ * cap_string - a function that capitalizes all words of a string
+ * @' ': space character
+ * @a: array variabe
+ * Return: a
  */
-char *cap_string(char *str)
+
+char *cap_string(char *a)
 {
-	int inde + 0;
+	int i;
 
-	while (str[index])\{
-		while (!(str[index] >= 'a' && str[index] <= 'z'))
-			index++;
+	int capNext = 1;
 
-	if (str[inde
+	for (i = 0; a[i] != '\0'; i++)
+	{
+	if (a[i] == ' ' || a[i] == '\n' || a[i] == '\t' || a[i] == '.')
+	{
+	capNext = 1;
+	}
+	else
+	{
+	if (capNext && a[i] >= 'a' && a[i] <= 'z')
+	{
+	a[i] -= ('a' - 'A');
+	}
+	capNext = 0;
+	}
+	}
+	return (a);
+}
