@@ -1,5 +1,8 @@
 #ifndef LINK_H
 #define LINK_H
+
+#include <stddef.h>
+
 /**
  * struct list_s - singly linked list
  * @str: string
