@@ -1,6 +1,11 @@
 #ifndef LINK_H
 #define LINK_H
-
+/**
+ * struct list_s - singly linked list
+ * @str: string
+ * @len: string length
+ * @next: pointing to next node
+ */
 typedef struct list_s
 {
 	char *str;
