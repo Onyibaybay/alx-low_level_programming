@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "main.h"
+
 /**
  * read_textfile - function that reads a text file and prints the letters
  * @filename: filename.
@@ -10,41 +9,32 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *file;
-	char *buffer;
-	ssize_t bytesRead, bytesWritten = 0;
+	ssize_t rd, wr, st;
+	char *file;
 
-	file = fopen(filename, "r");
-
-	if (file == NULL)
-		return (0);
-
-	buffer = (char *)malloc(sizeof(char) * (letters + 1));
-
-	if (buffer == NULL)
+	if (filename == NULL)
 	{
-		fclose(file);
 		return (0);
 	}
-	bytesRead = fread(buffer, sizeof(char), letters, file);
+	st = open(filename, O_RDONLY);
 
-	if (bytesRead < 0)
+		if (st == -1)
+		{
+			return (0);
+		}
+		file = malloc(sizeof(char) * letters);
+		if (file == NULL)
+		{
+			return (0);
+		}
+		rd = read(st, file, letters);
+		wr = write(STDOUT_FILENO, file, rd);
+
+	if (wr != rd || wr == -1)
 	{
-		fclose(file);
-		free(buffer);
 		return (0);
 	}
-	buffer[bytesRead] = '\0';
-
-	write(STDOUT_FILENO, buffer, bytesRead);
-
-	if (bytesWritten < 0 || (ssize_t)bytesWritten != bytesRead)
-	{
-		fclose(file);
-		free(buffer);
-		return (0);
-	}
-	fclose(file);
-	free(buffer);
-	return (bytesRead);
-}
+	close(st);
+	free(file);
+	return (wr);
+}	
